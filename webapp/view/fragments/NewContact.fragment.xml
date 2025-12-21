@@ -1,0 +1,22 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+	<Dialog busyIndicatorDelay="50" title="{i18n>title_ProductInfo}" showHeader="true">
+		<content>
+			<f:SimpleForm editable="false" layout="ResponsiveGridLayout">
+				<f:content>
+					<Label text="{i18n>label_ProductName}"/>
+					<Input editable="true" value="{NewProduct>ProductName}"/>
+					<Label text="{i18n>label_price}"/>
+					<Input editable="true" value="{NewProduct>Price}"/>
+					<Label text="{i18n>label_description}"/>
+					<Input editable="true" value="{NewProduct>Description}"/>
+					<Label text="{i18n>label_releasedate}"/>
+                    <DateTimePicker value="{NewProduct>ReleaseDate}"/>
+				</f:content>
+			</f:SimpleForm>
+		</content>
+		<buttons>
+            <Button text="{i18n>button_add}" press=".onDialogAdd"/>
+			<Button text="{i18n>button_cancel}" press=".onDialogClose"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

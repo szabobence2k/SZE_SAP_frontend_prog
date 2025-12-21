@@ -1,0 +1,23 @@
+<mvc:View controllerName="szehomework2.controller.PersonDetails"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:form="sap.ui.layout.form">
+    <Page id="detailpage" title="Details">
+        <content>
+          <form:SimpleForm >
+        <Label text="Product Name" />
+        <Input id="productNameInput" value="{ProductName}" editable="{inputModel>/editable}"/>
+        
+        <Label text="Quantity Per Unit" />
+        <Input value="{QuantityPerUnit}" editable="{inputModel>/editable}"/>
+        
+        <Label text="Unit Price" />
+        <Input value="{UnitPrice} $" editable="{inputModel>/editable}"/>
+        
+        <Button text="Edit" press="onEditPress" />
+        <Button text="Delete" press="onDeletePress" type="Reject" visible="{= ${inputModel>/editable} === true ? false : true}"/>
+        </form:SimpleForm>
+        <Button text="Save" icon="sap-icon://save" press="onSave" visible="{inputModel>/editable}"/>
+        </content>
+    </Page>
+</mvc:View>
