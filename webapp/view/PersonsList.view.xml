@@ -1,0 +1,41 @@
+<mvc:View controllerName="szehomework2.controller.PersonsList"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}">
+    <Toolbar id="productSearch"  class="sapUiResponsiveMargin"  >
+            <SearchField width="50%" search="onFilter"/>
+            <ToolbarSpacer/>
+            <Button icon="sap-icon://add" text="Add new contact" press="onNewProduct"/>
+        </Toolbar>
+        <Table id="personTable" items="{/Employees}" itemPress="onProductPressed">
+            <columns>
+                <Column id="productColumn">
+                    <Text text="Name"></Text>
+                </Column>
+                <Column>
+                    <Text text="Position"></Text>
+                </Column>
+                <Column>
+                    <Text text="Unit in stock"></Text>
+                </Column>
+                <Column>
+                    <Text text="More informations"></Text>
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem type="DetailAndActive" detailPress="onModifyPressed">
+                    <cells>
+                        <ObjectIdentifier title="{FirstName}" text="{LastName}"/>
+                        <Text text="{Title}"></Text>
+                        <ObjectStatus
+							class="sapUiSmallMarginBottom"
+							text="{UnitsInStock}"
+							active="false"
+							state="{= ${UnitsInStock} > 10 ? 'Success' : 'Error' }" />
+                        <Button text="More informations" icon="sap-icon://information" press="onShowSupplierDetails" />
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+    </Page>
+</mvc:View>

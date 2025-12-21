@@ -1,0 +1,139 @@
+{
+  "_version": "1.76.0",
+  "sap.app": {
+    "id": "szehomework2",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.20.0",
+      "toolsId": "cbd1d15f-63fa-4eb6-9f9a-e18760fc325c"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/V2/Northwind/northwind.svc/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "localUri": "localService/mainService/metadata.xml",
+          "odataVersion": "2.0"
+        }
+      },
+      "editableService": {
+        "uri": "/V3/(S(mod1txvthkgdbkacqwvgcgsc))/OData/OData.svc/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "localUri": "localService/editableService/metadata.xml",
+          "odataVersion": "2.0"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": false,
+    "dependencies": {
+      "minUI5Version": "1.142.2",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "szehomework2.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {}
+      },
+      "editableModel": {
+        "dataSource": "editableService",
+        "preload": true,
+        "settings": {}
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "transition": "slide",
+        "type": "View",
+        "viewType": "XML",
+        "path": "szehomework2.view",
+        "async": true,
+        "viewPath": "szehomework2.view"
+      },
+      "routes": [
+        {
+          "name": "RoutePersonsList",
+          "pattern": ":?query:",
+          "target": [
+            "TargetPersonsList"
+          ]
+        },
+        {
+          "name": "RoutePersonDetails",
+          "pattern": "details/{PersonId}",
+          "target": [
+            "TargetPersonDetails"
+          ]
+        }
+      ],
+      "targets": {
+        "TargetPersonsList": {
+          "id": "PersonsList",
+          "name": "PersonsList"
+        },
+        "TargetPersonDetails": {
+          "id": "PersonDetails",
+          "name": "PersonDetails"
+        }
+      }
+    },
+    "rootView": {
+      "viewName": "szehomework2.view.App",
+      "type": "XML",
+      "id": "App",
+      "async": true
+    }
+  }
+}
