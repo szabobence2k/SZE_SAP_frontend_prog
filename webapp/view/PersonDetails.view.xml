@@ -2,24 +2,43 @@
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
     xmlns="sap.m"
     xmlns:form="sap.ui.layout.form">
-    <Page id="detailpage" title="Details">
+    <Page id="detailpage" title="{i18n>title_Details}">
         <content>
           <form:SimpleForm >
-        <Label text="Name" />
-        <Input id="personNameInput" value="{Name}" editable="{inputModel>/editable}"/>
-        <Label text="{i18n>label_FirstName}"/>
-				<Input editable="{inputModel>/editable}" value="{NewContact>FirstName}"/>
-				<Label text="{i18n>label_LastName}"/>
-				<Input editable="{inputModel>/editable}" value="{NewContact>LastName}"/>
-				<Label text="{i18n>label_Title}"/>
-        <Input editable="{inputModel>/editable}" value="{NewContact>Title}"/>
-        <Label text="Unit Price" />
-        <Input value="{UnitPrice} $" editable="{inputModel>/editable}"/>
-        
-        <Button text="Edit" press="onEditPress" />
-        <Button text="Delete" press="onDeletePress" type="Reject" visible="{= ${inputModel>/editable} === true ? false : true}"/>
-        </form:SimpleForm>
-        <Button text="Save" icon="sap-icon://save" press="onSave" visible="{inputModel>/editable}"/>
+            <Label text="{i18n>label_FirstName}"/>
+            <Input editable="{Editable>/editMode}" value="{FirstName}"/>
+            <Label text="{i18n>label_LastName}"/>
+            <Input editable="{Editable>/editMode}" value="{LastName}"/>
+            <Label text="{i18n>label_Title}"/>
+            <Input editable="{Editable>/editMode}" value="{Title}"/>
+            <Label text="{i18n>label_TitleOfCourtesy}"/>
+            <Input editable="{Editable>/editMode}" value="{TitleOfCourtesy}"/>
+            <Label text="{i18n>label_BirthDate}"/>
+            <Input editable="{Editable>/editMode}" value="{BirthDate}"/>
+            <Label text="{i18n>label_HireDate}"/>
+            <Input editable="{Editable>/editMode}" value="{HireDate}"/>
+            <Label text="{i18n>label_Address}"/>
+            <Input editable="{Editable>/editMode}" value="{Address}"/>
+            <Label text="{i18n>label_City}"/>
+            <Input editable="{Editable>/editMode}" value="{City}"/>
+            <Label text="{i18n>label_Region}"/>
+            <Input editable="{Editable>/editMode}" value="{Region}"/>
+            <Label text="{i18n>label_PostalCode}"/>
+            <Input editable="{Editable>/editMode}" value="{PostalCode}"/>
+            <Label text="{i18n>label_Country}"/>
+            <Input editable="{Editable>/editMode}" value="{Country}"/>
+            <Label text="{i18n>label_HomePhone}"/>
+            <Input editable="{Editable>/editMode}" value="{HomePhone}"/>
+            <Label text="{i18n>label_Extension}"/>
+            <Input editable="{Editable>/editMode}" value="{Extension}"/>
+            <Label text="{i18n>label_Photo}"/>
+            <Input editable="{Editable>/editMode}" value="{PhotoPath}"/>
+            <Label text="{i18n>label_Notes}"/>
+            <Input editable="{Editable>/editMode}" value="{Notes}"/>
+          
+            <Button text="Edit" type="{= ${Editable>/editMode} ? 'Emphasized' : 'Default' }" press="onEditPress" />
+            <Button text="Save" type="Accept" icon="sap-icon://save" press="onSave"/>
+          </form:SimpleForm>
         </content>
     </Page>
 </mvc:View>

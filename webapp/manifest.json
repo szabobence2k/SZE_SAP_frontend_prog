@@ -26,7 +26,7 @@
         }
       },
       "editableService": {
-        "uri": "https://services.odata.org/V3/(S(xvjxsydcypuqld3tjqvn3ww5))/OData/OData.svc/",
+        "uri": "/V2/(S(s1cukv4ikftwzm0sknbqbqyt))/OData/OData.svc/",
         "type": "OData",
         "settings": {
           "annotations": [],
@@ -80,7 +80,10 @@
       "editableModel": {
         "dataSource": "editableService",
         "preload": true,
-        "settings": {}
+        "settings": {
+          "useBatch": false,
+          "defaultBindingMode": "TwoWay"
+        }
       }
     },
     "resources": {

@@ -22,7 +22,7 @@
             <items>
                 <ColumnListItem type="DetailAndActive" detailPress="onModifyPressed">
                     <cells>
-                        <ObjectIdentifier title="{FirstName}" text="{LastName}"/>
+                        <ObjectIdentifier title="{FirstName} {LastName}" text="{TitleOfCourtesy}"/>
                         <Text text="{Title}"></Text>
                         <Button text="More informations" icon="sap-icon://information" press="onShowPersonDetails" />
                     </cells>

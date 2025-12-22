@@ -4,39 +4,45 @@
 			<f:SimpleForm editable="false" layout="ResponsiveGridLayout">
 				<f:content>
 					<Label text="{i18n>label_FirstName}"/>
-					<Input editable="true" value="{NewContact>FirstName}"/>
+					<Input editable="true" value="{NewContact>/FirstName}"/>
 					<Label text="{i18n>label_LastName}"/>
-					<Input editable="true" value="{NewContact>LastName}"/>
+					<Input editable="true" value="{NewContact>/LastName}"/>
 					<Label text="{i18n>label_Title}"/>
-					<Select id="titleTypeSelect" items="{TitleTypeModel>/}">
+					<Select id="titleTypeSelect" items="{TitleTypeModel>/}" selectedKey="{NewContact>/Title}">
                         <core:Item id="titleTypeItem" key="{TitleTypeModel>key}" text="{TitleTypeModel>text}" />
                     </Select>
 					<Label text="{i18n>label_TitleOfCourtesy}"/>
-					<Select id="titleOfCourtesyTypeSelect" items="{TitleOfCourtesyTypeModel>/}">
-                        <core:Item id="titleOfCourtesyTypeItem" key="{TitleOfCourtesyTypeModel>key}" text="{TitleOfCourtesyTypeModel>text}" />
-                    </Select>
+					<Select selectedKey="{NewContact>/TitleOfCourtesy}">
+    					<items>
+							<core:Item key="" text="" />
+       			 			<core:Item key="Mr." text="Mr." />
+							<core:Item key="Ms." text="Ms." />
+							<core:Item key="Mrs." text="Mrs." />
+							<core:Item key="Dr." text="Dr." />
+						</items>
+					</Select>
 					<Label text="{i18n>label_BirthDate}"/>
-					<DatePicker value="{NewContact>BirthDate}"/>
+					<DatePicker value="{NewContact>/BirthDate}"/>
 					<Label text="{i18n>label_HireDate}"/>
-                    <DatePicker value="{NewContact>HireDate}"/>
+                    <DatePicker value="{NewContact>/HireDate}"/>
 					<Label text="{i18n>label_Address}"/>
-					<Input editable="true" value="{NewContact>Address}"/>
+					<Input editable="true" value="{NewContact>/Address}"/>
 					<Label text="{i18n>label_City}"/>
-					<Input editable="true" value="{NewContact>City}"/>
+					<Input editable="true" value="{NewContact>/City}"/>
 					<Label text="{i18n>label_Region}"/>
-					<Input editable="true" value="{NewContact>Region}"/>
+					<Input editable="true" value="{NewContact>/Region}"/>
 					<Label text="{i18n>label_PostalCode}"/>
-					<Input editable="true" value="{NewContact>PostalCode}"/>
+					<Input editable="true" value="{NewContact>/PostalCode}"/>
 					<Label text="{i18n>label_Country}"/>
-					<Input editable="true" value="{NewContact>Country}"/>
+					<Input editable="true" value="{NewContact>/Country}"/>
 					<Label text="{i18n>label_HomePhone}"/>
-					<Input editable="true" value="{NewContact>HomePhone}"/>
+					<Input editable="true" value="{NewContact>/HomePhone}"/>
 					<Label text="{i18n>label_Extension}"/>
-					<Input editable="true" value="{NewContact>Extension}"/>
+					<Input editable="true" value="{NewContact>/Extension}"/>
 					<Label text="{i18n>label_Photo}"/>
-					<Input editable="true" value="{NewContact>PhotoPath}"/>
+					<Input editable="true" value="{NewContact>/PhotoPath}"/>
 					<Label text="{i18n>label_Notes}"/>
-					<Input editable="true" value="{NewContact>Notes}"/>
+					<Input editable="true" value="{NewContact>/Notes}"/>
 				</f:content>
 			</f:SimpleForm>
 		</content>

@@ -21,60 +21,37 @@ sap.ui.define([
                     text: ""
                 },
                 {
-                    key: "1",
+                    key: "Customer",
                     text: "Customer"
                 },
                 {
-                    key: "2",
+                    key: "Sales Representative",
                     text: "Sales Representative"
                 },
                 {
-                    key: "3",
+                    key: "Vice President, Sales",
                     text: "Vice President, Sales"
                 },
                 {
-                    key: "4",
+                    key: "Sales Manager",
                     text: "Sales Manager"
                 },
                 {
-                    key: "5",
+                    key: "Inside Sales Coordinator",
                     text: "Inside Sales Coordinator"
                 },
                 {
-                    key: "6",
+                    key: "Director/ Co-director",
                     text: "Director/ Co-director"
                 },
                 {
-                    key: "7",
+                    key: "Staff",
                     text: "Staff"
                 }
             ]);
             this.getView().setModel(oTitleTypeJSONModel, "TitleTypeModel");
 
-            let oTitleOfCourtesyTypeJSONModel = new sap.ui.model.json.JSONModel([
-                {
-                    key: "",
-                    text: ""
-                },
-                {
-                    key: "1",
-                    text: "Ms."
-                },
-                {
-                    key: "2",
-                    text: "Mr."
-                },
-                {
-                    key: "3",
-                    text: "Mrs."
-                },
-                {
-                    key: "4",
-                    text: "Dr."
-                },
-            ]);
-            this.getView().setModel(oTitleOfCourtesyTypeJSONModel, "TitleOfCourtesyTypeModel");
-
+            this.getOwnerComponent().getModel("editableModel").setUseBatch(false);
         },
 
         onModifyPressed(oEvent) {
@@ -82,7 +59,6 @@ sap.ui.define([
         },
 
         onNewContact(oEvent) {
-            // Modell előkészítése
             let oNewContactModel = this.getOwnerComponent().getModel("NewContact");
             if (!oNewContactModel) {
                 oNewContactModel = new sap.ui.model.json.JSONModel({});
@@ -90,7 +66,6 @@ sap.ui.define([
             }
             oNewContactModel.setData({});
 
-            // Fragment betöltése Promiseként
             if (!this._NewContactDialog) {
                 this._NewContactDialog = sap.ui.core.Fragment.load({
                     id: this.getView().getId(),
@@ -110,24 +85,22 @@ sap.ui.define([
             });
         },
 
-        onDialogAdd(oEvent) {
+        /*onDialogAdd(oEvent) {
             const oComponent = this.getOwnerComponent();
+            const oEditableModel = oComponent.getModel("editableModel");
             const oContactModel = oComponent.getModel("NewContact");
-            const oEditableOdataModel = oComponent.getModel("editableModel");
-
             const oDialog = oEvent.getSource().getParent();
-
+            console.log("2. Modellek létrejöttek");
             const _parseDate = (sValue) => sValue ? new Date(sValue) : null;
+            const sFullName = oContactModel.getProperty("/LastName") + " " + oContactModel.getProperty("/FirstName");
 
             const oPerson = {
-                // ID: Math.floor(Math.random()*100), // Sokszor jobb elhagyni, ha a szerver generálja
-                LastName: oContactModel.getProperty("/LastName"),
-                FirstName: oContactModel.getProperty("/FirstName"),
+                ID: Math.floor(Math.random() * 100),
+                Name: sFullName,
                 Title: oContactModel.getProperty("/Title"),
                 TitleOfCourtesy: oContactModel.getProperty("/TitleOfCourtesy"),
                 BirthDate: _parseDate(oContactModel.getProperty("/BirthDate")),
                 HireDate: _parseDate(oContactModel.getProperty("/HireDate")),
-                Rating: 0,
                 Address: oContactModel.getProperty("/Address"),
                 City: oContactModel.getProperty("/City"),
                 Region: oContactModel.getProperty("/Region"),
@@ -136,23 +109,83 @@ sap.ui.define([
                 HomePhone: oContactModel.getProperty("/HomePhone"),
                 Extension: oContactModel.getProperty("/Extension"),
                 PhotoPath: oContactModel.getProperty("/PhotoPath"),
-                Notes: oContactModel.getProperty("/Notes")
+                Notes: oContactModel.getProperty("/Notes"),
+                
+
+                Description: oContactModel.getProperty("/Notes"),
+                ReleaseDate: oContactModel.getProperty("/HireDate"),
+                Rating: 0,
+                Price: "19.99"
+
             };
 
+            const oSimpleSupplier = {
+                Name: sFullName
+            };
+            console.log("3. Küldendő adatok:", oPerson);
             oDialog.setBusy(true); // Mutassuk, hogy dolgozunk
 
-            oEditableOdataModel.create("/Employees", oPerson, {
-                success: function (oData, oResponse) {
+            oEditableModel.create("/Suppliers", oPerson, {
+                success: function (oData) {
                     oDialog.setBusy(false);
                     oDialog.close();
                     sap.m.MessageToast.show("Person added successfully!");
                     this.getOwnerComponent().getModel().refresh(true);
-                },
+                }.bind(this),
+                error: function (oError) {
+                    console.log("4. HIBA történt:", oError);
+                    oDialog.setBusy(false);
+                    sap.m.MessageToast.show("Error occurred: " + oError.message);
+                }.bind(this)
+            });
+            oEditableModel.create("/Products", oSimpleSupplier, {
+                success: function (oData) {
+                    oDialog.setBusy(false);
+                    oDialog.close();
+                    sap.m.MessageToast.show("Success! (Saved as Product)");
+                }.bind(this),
                 error: function (oError) {
                     oDialog.setBusy(false);
-                    console.error("Hiba:", oError);
-                    sap.m.MessageToast.show("Error occurred during save!");
+                    sap.m.MessageBox.error("Error: " + oError.message);
                 }
+            });
+        },*/
+
+        onDialogAdd(oEvent) {
+            const oComponent = this.getOwnerComponent();
+            const oEditableModel = oComponent.getModel("editableModel");
+            const oContactModel = oComponent.getModel("NewContact");
+            const oDialog = oEvent.getSource().getParent();
+            const sFullName = oContactModel.getProperty("/LastName") + " " + oContactModel.getProperty("/FirstName");
+            const iRandomID = Math.floor(Math.random() * 2000);
+
+            const oSimpleProduct = {
+                ID: iRandomID,
+                Name: sFullName,
+                Description: oContactModel.getProperty("/Notes"),
+                ReleaseDate: oContactModel.getProperty("/HireDate"),
+                Rating: 5,
+                Price: "5.00"
+            };
+            oDialog.setBusy(true);
+
+            oEditableModel.create("/Products", oSimpleProduct, {
+                success: function (oData) {
+                    oDialog.setBusy(false);
+                    oDialog.close();
+                    sap.m.MessageToast.show("Success! Saved into Table Products! ID: " + iRandomID);
+                }.bind(this),
+                error: function (oError) {
+                    oDialog.setBusy(false);
+                    console.error("hiba: ", oError.responseText);
+
+                    let sDetailedError = "Unknown error";
+                    try {
+                        sDetailedError = JSON.parse(oError.responseText).error.message.value;
+                    } catch (e) { }
+
+                    sap.m.MessageBox.error("Error: " + sDetailedError);
+                }.bind(this)
             });
         },
 
@@ -183,10 +216,10 @@ sap.ui.define([
                 oComponent.setModel(new sap.ui.model.json.JSONModel(), "PersonDetails");
             }
 
-            if (!this._SupplierDialog) {
-                this._SupplierDialog = sap.ui.core.Fragment.load({
+            if (!this._pSupplierDialog) {
+                this._pSupplierDialog = sap.ui.core.Fragment.load({
                     id: this.getView().getId(),
-                    name: "szehomework2.view.fragments.NewContact",
+                    name: "szehomework2.view.fragments.ContactDetail",
                     controller: this
                 }).then(function (oDialog) {
                     this.getView().addDependent(oDialog);
@@ -194,16 +227,15 @@ sap.ui.define([
                 }.bind(this));
             }
 
-            oComponent.getModel().read(sPersonPath, {
+            oComponent.getModel().read(sPersonPath, { 
                 success: function (oData) {
                     oComponent.getModel("PersonDetails").setData(oData);
-
                     this._pSupplierDialog.then(function (oDialog) {
                         oDialog.open();
                     });
                 }.bind(this),
                 error: function (oError) {
-                    sap.m.MessageToast.show("Error while loading the datas.");
+                    sap.m.MessageToast.show("Error while loading datas");
                 }
             });
         },
@@ -215,7 +247,6 @@ sap.ui.define([
             let aFilters = [];
 
             if (sQuery) {
-                // Külön szűrők létrehozása a mezőkre
                 let oFilterFirstName = new sap.ui.model.Filter("FirstName", sap.ui.model.FilterOperator.Contains, sQuery);
                 let oFilterLastName = new sap.ui.model.Filter("LastName", sap.ui.model.FilterOperator.Contains, sQuery);
                 let oFilterTitle = new sap.ui.model.Filter("Title", sap.ui.model.FilterOperator.Contains, sQuery);
@@ -225,7 +256,6 @@ sap.ui.define([
                     filters: [oFilterFirstName, oFilterLastName, oFilterTitle],
                     and: false
                 });
-
                 aFilters.push(oCombinedFilter);
             }
             oBinding.filter(aFilters);

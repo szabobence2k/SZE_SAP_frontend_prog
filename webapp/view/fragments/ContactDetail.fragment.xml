@@ -1,0 +1,43 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+	<Dialog busyIndicatorDelay="50" title="{i18n>title_Details}" showHeader="true">
+		<content>
+			<f:SimpleForm editable="false" layout="ResponsiveGridLayout">
+				<f:content>
+                    <Label text="{i18n>label_FirstName}"/>
+					<Input editable="false" value="{PersonDetails>/FirstName}"/>
+					<Label text="{i18n>label_LastName}"/>
+					<Input editable="false" value="{PersonDetails>/LastName}"/>
+					<Label text="{i18n>label_Title}"/>
+                    <Input editable="false" value="{PersonDetails>/Title}"/>
+                    <Label text="{i18n>label_TitleOfCourtesy}"/>
+					<Input editable="false" value="{PersonDetails>/TitleOfCourtesy}"/>
+					<Label text="{i18n>label_BirthDate}"/>
+					<Input editable="false" value="{PersonDetails>/BirthDate}"/>
+					<Label text="{i18n>label_HireDate}"/>
+                    <Input editable="false" value="{PersonDetails>/HireDate}"/>
+					<Label text="{i18n>label_Address}"/>
+					<Input editable="false" value="{PersonDetails>/Address}"/>
+					<Label text="{i18n>label_City}"/>
+					<Input editable="false" value="{PersonDetails>/City}"/>
+					<Label text="{i18n>label_Region}"/>
+					<Input editable="false" value="{PersonDetails>/Region}"/>
+					<Label text="{i18n>label_PostalCode}"/>
+					<Input editable="false" value="{PersonDetails>/PostalCode}"/>
+					<Label text="{i18n>label_Country}"/>
+					<Input editable="false" value="{PersonDetails>/Country}"/>
+					<Label text="{i18n>label_HomePhone}"/>
+					<Input editable="false" value="{PersonDetails>/HomePhone}"/>
+					<Label text="{i18n>label_Extension}"/>
+					<Input editable="false" value="{PersonDetails>/Extension}"/>
+					<Label text="{i18n>label_Photo}"/>
+					<Input editable="false" value="{PersonDetails>/PhotoPath}"/>
+					<Label text="{i18n>label_Notes}"/>
+					<Input editable="false" value="{PersonDetails>/Notes}"/>
+				</f:content>
+			</f:SimpleForm>
+		</content>
+		<buttons>
+			<Button text="{i18n>button_cancel}" press=".onDialogClose"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>
