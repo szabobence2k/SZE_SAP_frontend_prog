@@ -3,20 +3,17 @@
     xmlns="sap.m">
     <Page id="page" title="{i18n>title}">
     <Toolbar id="productSearch"  class="sapUiResponsiveMargin"  >
-            <SearchField width="50%" search="onFilter"/>
+            <SearchField width="50%" liveChange="onFilter"/>
             <ToolbarSpacer/>
-            <Button icon="sap-icon://add" text="Add new contact" press="onNewProduct"/>
+            <Button icon="sap-icon://add" text="{i18n>title_NewContact}" press="onNewContact"/>
         </Toolbar>
-        <Table id="personTable" items="{/Employees}" itemPress="onProductPressed">
+        <Table id="personTable" items="{/Employees}" itemPress="onPersonPressed">
             <columns>
                 <Column id="productColumn">
                     <Text text="Name"></Text>
                 </Column>
                 <Column>
                     <Text text="Position"></Text>
-                </Column>
-                <Column>
-                    <Text text="Unit in stock"></Text>
                 </Column>
                 <Column>
                     <Text text="More informations"></Text>
@@ -27,12 +24,7 @@
                     <cells>
                         <ObjectIdentifier title="{FirstName}" text="{LastName}"/>
                         <Text text="{Title}"></Text>
-                        <ObjectStatus
-							class="sapUiSmallMarginBottom"
-							text="{UnitsInStock}"
-							active="false"
-							state="{= ${UnitsInStock} > 10 ? 'Success' : 'Error' }" />
-                        <Button text="More informations" icon="sap-icon://information" press="onShowSupplierDetails" />
+                        <Button text="More informations" icon="sap-icon://information" press="onShowPersonDetails" />
                     </cells>
                 </ColumnListItem>
             </items>

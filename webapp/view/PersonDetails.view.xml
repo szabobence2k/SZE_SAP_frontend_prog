@@ -5,12 +5,14 @@
     <Page id="detailpage" title="Details">
         <content>
           <form:SimpleForm >
-        <Label text="Product Name" />
-        <Input id="productNameInput" value="{ProductName}" editable="{inputModel>/editable}"/>
-        
-        <Label text="Quantity Per Unit" />
-        <Input value="{QuantityPerUnit}" editable="{inputModel>/editable}"/>
-        
+        <Label text="Name" />
+        <Input id="personNameInput" value="{Name}" editable="{inputModel>/editable}"/>
+        <Label text="{i18n>label_FirstName}"/>
+				<Input editable="{inputModel>/editable}" value="{NewContact>FirstName}"/>
+				<Label text="{i18n>label_LastName}"/>
+				<Input editable="{inputModel>/editable}" value="{NewContact>LastName}"/>
+				<Label text="{i18n>label_Title}"/>
+        <Input editable="{inputModel>/editable}" value="{NewContact>Title}"/>
         <Label text="Unit Price" />
         <Input value="{UnitPrice} $" editable="{inputModel>/editable}"/>
         

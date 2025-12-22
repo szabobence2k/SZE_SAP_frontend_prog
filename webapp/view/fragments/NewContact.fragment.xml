@@ -1,16 +1,42 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
-	<Dialog busyIndicatorDelay="50" title="{i18n>title_ProductInfo}" showHeader="true">
+	<Dialog busyIndicatorDelay="50" title="{i18n>title_NewContact}" showHeader="true">
 		<content>
 			<f:SimpleForm editable="false" layout="ResponsiveGridLayout">
 				<f:content>
-					<Label text="{i18n>label_ProductName}"/>
-					<Input editable="true" value="{NewProduct>ProductName}"/>
-					<Label text="{i18n>label_price}"/>
-					<Input editable="true" value="{NewProduct>Price}"/>
-					<Label text="{i18n>label_description}"/>
-					<Input editable="true" value="{NewProduct>Description}"/>
-					<Label text="{i18n>label_releasedate}"/>
-                    <DateTimePicker value="{NewProduct>ReleaseDate}"/>
+					<Label text="{i18n>label_FirstName}"/>
+					<Input editable="true" value="{NewContact>FirstName}"/>
+					<Label text="{i18n>label_LastName}"/>
+					<Input editable="true" value="{NewContact>LastName}"/>
+					<Label text="{i18n>label_Title}"/>
+					<Select id="titleTypeSelect" items="{TitleTypeModel>/}">
+                        <core:Item id="titleTypeItem" key="{TitleTypeModel>key}" text="{TitleTypeModel>text}" />
+                    </Select>
+					<Label text="{i18n>label_TitleOfCourtesy}"/>
+					<Select id="titleOfCourtesyTypeSelect" items="{TitleOfCourtesyTypeModel>/}">
+                        <core:Item id="titleOfCourtesyTypeItem" key="{TitleOfCourtesyTypeModel>key}" text="{TitleOfCourtesyTypeModel>text}" />
+                    </Select>
+					<Label text="{i18n>label_BirthDate}"/>
+					<DatePicker value="{NewContact>BirthDate}"/>
+					<Label text="{i18n>label_HireDate}"/>
+                    <DatePicker value="{NewContact>HireDate}"/>
+					<Label text="{i18n>label_Address}"/>
+					<Input editable="true" value="{NewContact>Address}"/>
+					<Label text="{i18n>label_City}"/>
+					<Input editable="true" value="{NewContact>City}"/>
+					<Label text="{i18n>label_Region}"/>
+					<Input editable="true" value="{NewContact>Region}"/>
+					<Label text="{i18n>label_PostalCode}"/>
+					<Input editable="true" value="{NewContact>PostalCode}"/>
+					<Label text="{i18n>label_Country}"/>
+					<Input editable="true" value="{NewContact>Country}"/>
+					<Label text="{i18n>label_HomePhone}"/>
+					<Input editable="true" value="{NewContact>HomePhone}"/>
+					<Label text="{i18n>label_Extension}"/>
+					<Input editable="true" value="{NewContact>Extension}"/>
+					<Label text="{i18n>label_Photo}"/>
+					<Input editable="true" value="{NewContact>PhotoPath}"/>
+					<Label text="{i18n>label_Notes}"/>
+					<Input editable="true" value="{NewContact>Notes}"/>
 				</f:content>
 			</f:SimpleForm>
 		</content>

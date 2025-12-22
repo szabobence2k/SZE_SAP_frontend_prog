@@ -26,7 +26,7 @@
         }
       },
       "editableService": {
-        "uri": "/V3/(S(mod1txvthkgdbkacqwvgcgsc))/OData/OData.svc/",
+        "uri": "https://services.odata.org/V3/(S(xvjxsydcypuqld3tjqvn3ww5))/OData/OData.svc/",
         "type": "OData",
         "settings": {
           "annotations": [],
@@ -112,7 +112,7 @@
         },
         {
           "name": "RoutePersonDetails",
-          "pattern": "details/{PersonId}",
+          "pattern": "details/{EmployeeID}",
           "target": [
             "TargetPersonDetails"
           ]

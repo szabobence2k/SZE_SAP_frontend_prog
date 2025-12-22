@@ -13,7 +13,7 @@ sap.ui.define([
             const sId = oEvent.getParameter("arguments").ProductId;
 
             this.getView().bindElement({
-                //path: "/Persons(" + sId + ")",
+                path: "/Persons(" + sId + ")",
             });
         },
 
