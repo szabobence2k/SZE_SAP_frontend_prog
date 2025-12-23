@@ -12,9 +12,9 @@
                     <Label text="{i18n>label_TitleOfCourtesy}"/>
 					<Input editable="false" value="{PersonDetails>/TitleOfCourtesy}"/>
 					<Label text="{i18n>label_BirthDate}"/>
-					<Input editable="false" value="{PersonDetails>/BirthDate}"/>
+					<Input editable="false" value="{path: 'PersonDetails>/BirthDate',formatter: '.formatter.DateFormatter'}"/>
 					<Label text="{i18n>label_HireDate}"/>
-                    <Input editable="false" value="{PersonDetails>/HireDate}"/>
+                    <Input editable="false" value="{path: 'PersonDetails>/HireDate',formatter: '.formatter.DateFormatter'}"/>
 					<Label text="{i18n>label_Address}"/>
 					<Input editable="false" value="{PersonDetails>/Address}"/>
 					<Label text="{i18n>label_City}"/>

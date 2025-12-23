@@ -14,9 +14,9 @@
             <Label text="{i18n>label_TitleOfCourtesy}"/>
             <Input editable="{Editable>/editMode}" value="{TitleOfCourtesy}"/>
             <Label text="{i18n>label_BirthDate}"/>
-            <Input editable="{Editable>/editMode}" value="{BirthDate}"/>
+            <Input editable="{Editable>/editMode}" value="{path: 'BirthDate',formatter: '.formatter.DateFormatter'}"/>
             <Label text="{i18n>label_HireDate}"/>
-            <Input editable="{Editable>/editMode}" value="{HireDate}"/>
+            <Input editable="{Editable>/editMode}" value="{path: 'HireDate',formatter: '.formatter.DateFormatter'}"/>
             <Label text="{i18n>label_Address}"/>
             <Input editable="{Editable>/editMode}" value="{Address}"/>
             <Label text="{i18n>label_City}"/>

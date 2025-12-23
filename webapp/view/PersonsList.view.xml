@@ -2,32 +2,33 @@
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m">
     <Page id="page" title="{i18n>title}">
-    <Toolbar id="productSearch"  class="sapUiResponsiveMargin"  >
+        <Toolbar id="productSearch"  class="sapUiResponsiveMargin"  >
             <SearchField width="50%" liveChange="onFilter"/>
             <ToolbarSpacer/>
             <Button icon="sap-icon://add" text="{i18n>title_NewContact}" press="onNewContact"/>
         </Toolbar>
-        <Table id="personTable" items="{/Employees}" itemPress="onPersonPressed">
-            <columns>
-                <Column id="productColumn">
-                    <Text text="Name"></Text>
-                </Column>
-                <Column>
-                    <Text text="Position"></Text>
-                </Column>
-                <Column>
-                    <Text text="More informations"></Text>
-                </Column>
-            </columns>
-            <items>
-                <ColumnListItem type="DetailAndActive" detailPress="onModifyPressed">
-                    <cells>
-                        <ObjectIdentifier title="{FirstName} {LastName}" text="{TitleOfCourtesy}"/>
-                        <Text text="{Title}"></Text>
-                        <Button text="More informations" icon="sap-icon://information" press="onShowPersonDetails" />
-                    </cells>
-                </ColumnListItem>
-            </items>
-        </Table>
+        <List id="personGrid" items="{/Employees}" mode="None" headerText="Contacts" class="twoColumnGrid">
+            <CustomListItem type="Active" press="onPersonPressed">
+                <Panel headerText="{FirstName} {LastName}" class="sapUiSmallMarginBottom">
+                    <VBox>
+                        <HBox alignItems="Center" justifyContent="Start">
+                            
+                            <Avatar src="sap-icon://customer" displayShape="Square" class="sapUiSmallMarginEnd"/> <!--A "Photo" és "PhootoPath" elemek elavultak és nem lehet őket megjeleníteni-->
+                            <VBox class="sapUiSmallMarginEnd">
+                                <Label text="Status: " design="Bold" />
+                                <Text text="{Title}" />
+                            </VBox>
+                            <ToolbarSpacer />
+                            <Button icon="sap-icon://edit" type="Transparent" press="onModifyPressed" />
+                        </HBox>
+                        <HBox justifyContent="End">
+                            <Button text="{i18n>title_Details}" icon="sap-icon://process" type="Ghost" press="onShowPersonDetails" />
+                        </HBox>
+                    </VBox>
+                </Panel>
+            </CustomListItem>
+        </List>
+
+        <!--létrehozott products elemeket megjeleníteni-->
     </Page>
 </mvc:View>

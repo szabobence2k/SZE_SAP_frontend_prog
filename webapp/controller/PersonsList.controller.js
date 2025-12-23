@@ -162,7 +162,7 @@ sap.ui.define([
             const oSimpleProduct = {
                 ID: iRandomID,
                 Name: sFullName,
-                Description: oContactModel.getProperty("/Notes"),
+                Description: oContactModel.getProperty("/Title"),
                 ReleaseDate: oContactModel.getProperty("/HireDate"),
                 Rating: 5,
                 Price: "5.00"
@@ -193,12 +193,13 @@ sap.ui.define([
             oEvent.getSource().getParent().close();
         },
 
-        onPersonPressed(oEvent) {
-            const oItem = oEvent.getParameter("listItem");
+        onShowPersonDetails(oEvent) {
+            const oItem = oEvent.getSource();
             const oContext = oItem.getBindingContext();
 
             if (!oContext) {
                 console.error("Nem található binding context!");
+                oContext = oEvent.getParameter("listItem").getBindingContext();
                 return;
             }
             const sEmployeeID = oContext.getProperty("EmployeeID");
@@ -208,7 +209,7 @@ sap.ui.define([
             });
         },
 
-        onShowPersonDetails(oEvent) {
+        onPersonPressed(oEvent) {
             const sPersonPath = oEvent.getSource().getBindingContext().getPath();
             const oComponent = this.getOwnerComponent();
 

@@ -1,1 +1,12 @@
-/* Enter your custom styles here */
+.twoColumnGrid .sapMListItems {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.twoColumnGrid .sapMLIB {
+    width: 50% !important;
+    height: 200px;
+    border-bottom: none !important;
+    background: transparent !important;
+}

@@ -1,21 +1,35 @@
 sap.ui.define([
-    "sap/ui/core/format/NumberFormat"
+    "sap/ui/core/format/NumberFormat",
+    "sap/ui/core/format/DateFormat"
 
-], 
-function (NumberFormat) {
-    "use strict";
+],
+    function (NumberFormat, DateFormat) {
+        "use strict";
 
-    return {
-        PriceFormatter(sPrice) {
-            const oPriceFormat = NumberFormat.getCurrencyInstance({
-                "currencyCode": true,
-                "decimalSeparator": ".",
-            });
-            return oPriceFormat.format(sPrice,"HUF");
+        return {
+            DateFormatter(oDate) {
+                if (!oDate) {
+                    return "";
+                }
 
-            //return sPrice + " pénz";
-        }
+                let oDateFormat = DateFormat.getDateTimeInstance({
+                    pattern: "yyyy. MM. dd. hh:mm a"
+                });
 
-    };
+                if (typeof oDate === "string") {
+                    oDate = new Date(oDate);
+                }
+                return oDateFormat.format(oDate);
+            },
 
-});
+            formatPhotoUrl(sEmployeeID) {
+                if (!sEmployeeID) {
+                    return "";
+                }
+                //return "/V2/Northwind/Northwind.svc/Employees(" + sEmployeeID + ")/$value";
+                return "https://robohash.org/" + sEmployeeID + "?set=set5";
+            }
+
+        };
+
+    });

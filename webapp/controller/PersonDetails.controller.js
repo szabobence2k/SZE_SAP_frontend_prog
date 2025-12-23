@@ -1,10 +1,13 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
+    "szehomework2/model/formatter"
 
-], (Controller) => {
+], (Controller, formatter) => {
     "use strict";
 
     return Controller.extend("szehomework2.controller.PersonDetails", {
+        formatter: formatter,
+
         onInit() {
             this.getOwnerComponent().getRouter().getRoute("RoutePersonDetails").attachPatternMatched(this._onObjectMatched, this);
 
@@ -28,14 +31,12 @@ sap.ui.define([
             const oRouter = this.getOwnerComponent().getRouter();
             oRouter.navTo("RoutePersonsList", {}, true);
             sap.m.MessageToast.show("Change(s) saved!");
-
         },
 
         onEditPress(oEvent) {
             const oEditableModel = this.getView().getModel("Editable");
             const CurrentMode = oEditableModel.getProperty("/editMode");
 
-            // Átváltás az ellenkező állapotra
             oEditableModel.setProperty("/editMode", !CurrentMode);
         }
 
