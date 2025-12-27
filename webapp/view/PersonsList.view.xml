@@ -7,7 +7,7 @@
             <ToolbarSpacer/>
             <Button icon="sap-icon://add" text="{i18n>title_NewContact}" press="onNewContact"/>
         </Toolbar>
-        <List id="personGrid" items="{/Employees}" mode="None" headerText="Contacts" class="twoColumnGrid">
+        <List id="personGrid" items="{/Employees}" mode="None" headerText="{i18n>title_Contact}" class="twoColumnGrid">
             <CustomListItem type="Active" press="onPersonPressed">
                 <Panel headerText="{FirstName} {LastName}" class="sapUiSmallMarginBottom">
                     <VBox>
@@ -29,6 +29,33 @@
             </CustomListItem>
         </List>
 
-        <!--létrehozott products elemeket megjeleníteni-->
+        <List id="productsGrid" 
+        items="{
+            path: 'editableModel>/Products',
+            filters: [
+                { path: 'ID', operator: 'GT', value1: '8' }
+            ]
+        }" 
+        mode="None" headerText="{i18n>title_AddedContact}" class="twoColumnGrid">
+            <CustomListItem type="Active"  press="onAddedPersonPressed">
+                <Panel headerText="{editableModel>Name}" class="sapUiSmallMarginBottom">
+                    <VBox>
+                        <HBox alignItems="Center" justifyContent="Start">
+                            <Avatar 
+                                src="sap-icon://product" displayShape="Square" class="sapUiSmallMarginEnd"/>
+                            <VBox class="sapUiSmallMarginEnd">
+                                <Label text="Type: " design="Bold"/>
+                                <Text text="{editableModel>Description}"/>
+                            </VBox>
+                            <ToolbarSpacer />
+                            <Button icon="sap-icon://edit" type="Transparent" press="onModifyPressed" />
+                        </HBox>
+                        <HBox justifyContent="End">
+                            <Button text="{i18n>title_Details}" icon="sap-icon://process" type="Ghost" press="onShowAddedPersonDetails" />
+                        </HBox>
+                    </VBox>
+                </Panel>
+            </CustomListItem>
+        </List>
     </Page>
 </mvc:View>

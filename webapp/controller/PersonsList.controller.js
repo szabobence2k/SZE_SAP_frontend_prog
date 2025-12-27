@@ -55,7 +55,7 @@ sap.ui.define([
         },
 
         onModifyPressed(oEvent) {
-            sap.m.MessageToast.show("Employee can not be modified.");
+            sap.m.MessageBox.error("Employee can not be modified. (Read Only Mode)");
         },
 
         onNewContact(oEvent) {
@@ -85,82 +85,16 @@ sap.ui.define([
             });
         },
 
-        /*onDialogAdd(oEvent) {
-            const oComponent = this.getOwnerComponent();
-            const oEditableModel = oComponent.getModel("editableModel");
-            const oContactModel = oComponent.getModel("NewContact");
-            const oDialog = oEvent.getSource().getParent();
-            console.log("2. Modellek létrejöttek");
-            const _parseDate = (sValue) => sValue ? new Date(sValue) : null;
-            const sFullName = oContactModel.getProperty("/LastName") + " " + oContactModel.getProperty("/FirstName");
-
-            const oPerson = {
-                ID: Math.floor(Math.random() * 100),
-                Name: sFullName,
-                Title: oContactModel.getProperty("/Title"),
-                TitleOfCourtesy: oContactModel.getProperty("/TitleOfCourtesy"),
-                BirthDate: _parseDate(oContactModel.getProperty("/BirthDate")),
-                HireDate: _parseDate(oContactModel.getProperty("/HireDate")),
-                Address: oContactModel.getProperty("/Address"),
-                City: oContactModel.getProperty("/City"),
-                Region: oContactModel.getProperty("/Region"),
-                PostalCode: oContactModel.getProperty("/PostalCode"),
-                Country: oContactModel.getProperty("/Country"),
-                HomePhone: oContactModel.getProperty("/HomePhone"),
-                Extension: oContactModel.getProperty("/Extension"),
-                PhotoPath: oContactModel.getProperty("/PhotoPath"),
-                Notes: oContactModel.getProperty("/Notes"),
-                
-
-                Description: oContactModel.getProperty("/Notes"),
-                ReleaseDate: oContactModel.getProperty("/HireDate"),
-                Rating: 0,
-                Price: "19.99"
-
-            };
-
-            const oSimpleSupplier = {
-                Name: sFullName
-            };
-            console.log("3. Küldendő adatok:", oPerson);
-            oDialog.setBusy(true); // Mutassuk, hogy dolgozunk
-
-            oEditableModel.create("/Suppliers", oPerson, {
-                success: function (oData) {
-                    oDialog.setBusy(false);
-                    oDialog.close();
-                    sap.m.MessageToast.show("Person added successfully!");
-                    this.getOwnerComponent().getModel().refresh(true);
-                }.bind(this),
-                error: function (oError) {
-                    console.log("4. HIBA történt:", oError);
-                    oDialog.setBusy(false);
-                    sap.m.MessageToast.show("Error occurred: " + oError.message);
-                }.bind(this)
-            });
-            oEditableModel.create("/Products", oSimpleSupplier, {
-                success: function (oData) {
-                    oDialog.setBusy(false);
-                    oDialog.close();
-                    sap.m.MessageToast.show("Success! (Saved as Product)");
-                }.bind(this),
-                error: function (oError) {
-                    oDialog.setBusy(false);
-                    sap.m.MessageBox.error("Error: " + oError.message);
-                }
-            });
-        },*/
-
         onDialogAdd(oEvent) {
             const oComponent = this.getOwnerComponent();
             const oEditableModel = oComponent.getModel("editableModel");
             const oContactModel = oComponent.getModel("NewContact");
             const oDialog = oEvent.getSource().getParent();
             const sFullName = oContactModel.getProperty("/LastName") + " " + oContactModel.getProperty("/FirstName");
-            const iRandomID = Math.floor(Math.random() * 2000);
+            const RandomID = Math.floor(Math.random() * 2000);
 
             const oSimpleProduct = {
-                ID: iRandomID,
+                ID: RandomID,
                 Name: sFullName,
                 Description: oContactModel.getProperty("/Title"),
                 ReleaseDate: oContactModel.getProperty("/HireDate"),
@@ -207,6 +141,27 @@ sap.ui.define([
             this.getOwnerComponent().getRouter().navTo("RoutePersonDetails", {
                 EmployeeID: sEmployeeID
             });
+        },
+
+        onShowAddedPersonDetails(oEvent) {
+            const oNewItem = oEvent.getSource();
+            const oNewContext = oNewItem.getBindingContext("editableModel");
+
+            if (!oNewContext) {
+                console.error("Nem található binding context!");
+                oNewContext = oEvent.getParameter("listItem").getBindingContext();
+                return;
+            }
+            const sID = oNewContext.getProperty("ID");
+
+            this.getOwnerComponent().getRouter().navTo("RouteAddedPersonDetails", {
+                ID: sID
+            });
+        },
+
+        onAddedPersonPressed(oEvent) {
+            sap.m.MessageBox.show("Added Person details are loading...");
+            this.onShowAddedPersonDetails(oEvent)
         },
 
         onPersonPressed(oEvent) {

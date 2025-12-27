@@ -119,6 +119,13 @@
           "target": [
             "TargetPersonDetails"
           ]
+        },
+        {
+          "name": "RouteAddedPersonDetails",
+          "pattern": "AddedPersonDetails/{ID}",
+          "target": [
+            "TargetAddedPersonDetails"
+          ]
         }
       ],
       "targets": {
@@ -129,6 +136,10 @@
         "TargetPersonDetails": {
           "id": "PersonDetails",
           "name": "PersonDetails"
+        },
+        "TargetAddedPersonDetails": {
+          "id": "AddedPersonDetails",
+          "name": "AddedPersonDetails"
         }
       }
     },

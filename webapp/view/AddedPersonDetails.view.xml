@@ -1,0 +1,20 @@
+<mvc:View controllerName="szehomework2.controller.AddedPersonDetails"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:form="sap.ui.layout.form">
+    <Page id="newdetailpage" title="{i18n>title_Details}">
+        <content>
+          <form:SimpleForm >
+            <Label text="{i18n>label_FirstName}"/>
+            <Input editable="{Editable>/editMode}" value="{editableModel>Name}"/>
+            <Label text="{i18n>label_Title}"/>
+            <Input editable="{Editable>/editMode}" value="{editableModel>Description}"/>
+            <Label text="{i18n>label_HireDate}"/>
+            <Input editable="{Editable>/editMode}" value="{path: 'editableModel>ReleaseDate',formatter: '.formatter.DateFormatter'}"/>
+          
+            <Button text="Edit" type="{= ${Editable>/editMode} ? 'Emphasized' : 'Default' }" press="onEditPress" />
+            <Button text="Save" type="Accept" icon="sap-icon://save" press="onSave"/>
+          </form:SimpleForm>
+        </content>
+    </Page>
+</mvc:View>
