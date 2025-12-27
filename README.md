@@ -1,3 +1,7 @@
+## HR Portal Demo Application
+This is an SAPUI5-based demo application designed to simulate a HR Portal. The project demonstrates the integration of multiple data sources and advanced data handling techniques within the SAPUI5 framework.
+Utilizes the standard Northwind OData service for displaying reference data and integrates a customizable OData V2 service (editableModel) for dynamic data management.
+
 ## Application Details
 |               |
 | ------------- |
